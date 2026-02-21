@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CORS Lab</title>
+</head>
+<body>
+
+<h2>CORS Testing</h2>
+
+<button onclick="simpleGet()">Simple GET</button>
+<button onclick="postJson()">POST JSON</button>
+
+<script>
+const API =     "http://localhost:5000";
+
+function simpleGet() {
+  fetch(`${API}/test-get`)
+    .then(res => res.json())
+    .then(data => console.log("GET success:", data))
+    .catch(err => console.error("GET error:", err));
+}
+
+function postJson() {
+  fetch(`${API}/test-post`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({name: "Ankur"})
+  })
+    .then(res => res.json())
+    .then(data => console.log("POST success:", data))
+    .catch(err => console.error("POST error:", err));
+}
+</script>
+
+</body>
+</html>
